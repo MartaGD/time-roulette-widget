@@ -77,6 +77,8 @@ El proyecto incluye un modo automático para embeds:
 - Composición `full-bleed` (el widget ocupa todo el iframe).
 - Menos sombras y decoración.
 - Flores decorativas ocultas.
+- Toggle de tema en la esquina superior derecha (`☾ / ☀`) para alternar claro/oscuro.
+- En modo oscuro embed, el fondo del widget pasa a `#191919`.
 - Proporciones más reducidas (fuentes, ruleta, botones, paddings y paneles).
 - Barra lateral oculta para ahorrar espacio.
 - Pantalla de gestión en formato lista compacta con controles en una línea.
@@ -99,7 +101,13 @@ Notas:
 
 - `tasksData` se usa como lista inicial cuando no hay datos guardados.
 - Tras el primer uso, las tareas se guardan automáticamente en `localStorage`.
+- La preferencia de tema del toggle embed (claro/oscuro) también se guarda en `localStorage`.
 - El botón `Reiniciar` en la pantalla final vacía la lista y actualiza `localStorage`.
+
+## 🧭 Detalles de scroll por modo
+
+- **Embed compacto**: sin scroll externo; la lista de tareas de gestión sí puede tener scroll interno.
+- **Responsive no embed (pantalla principal)**: sin scroll en la zona de tareas.
 
 ## 🗂️ Estructura del proyecto
 
