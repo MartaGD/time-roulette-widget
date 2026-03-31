@@ -43,6 +43,14 @@ const selectedTaskName = document.getElementById('selectedTaskName');
 const finishTaskBtn = document.getElementById('finishTaskBtn');
 const backToRouletteBtn = document.getElementById('backToRouletteBtn');
 
+const urlParams = new URLSearchParams(window.location.search);
+const forceCleanEmbed = urlParams.get('embed') === 'clean';
+const isEmbedded = window.self !== window.top;
+
+if (isEmbedded || forceCleanEmbed) {
+    document.body.classList.add('embed-clean');
+}
+
 // ========================================
 // FUNCIONES PRINCIPALES
 // ========================================
@@ -193,7 +201,14 @@ function renderHomeTasks() {
 
         li.innerHTML = `
             <span class="home-task-text">${escapeHtml(task.text)}</span>
-            <button class="delete-btn" data-delete-id="${task.id}">Eliminar</button>
+            <button class="delete-btn" data-delete-id="${task.id}" aria-label="Eliminar tarea">
+                <span class="delete-btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                        <path d="M9 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v8h-2V9zm4 0h2v8h-2V9zM7 9h2v8H7V9zm1 12h8a2 2 0 0 0 2-2V9H6v10a2 2 0 0 0 2 2z"/>
+                    </svg>
+                </span>
+                <span class="delete-btn-text">Eliminar</span>
+            </button>
         `;
 
         const deleteButton = li.querySelector('.delete-btn');
