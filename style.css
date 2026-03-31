@@ -972,6 +972,13 @@ body.embed-clean .task-item {
         gap: 12px;
     }
 
+    body:not(.embed-clean) .roulette-screen {
+        padding: 12px 12px;
+        gap: 8px;
+        justify-content: flex-start;
+        flex: 0 0 auto;
+    }
+
     body:not(.embed-clean) .home-screen h1,
     body:not(.embed-clean) .roulette-screen h1,
     body:not(.embed-clean) .completion-screen h1 {
@@ -1087,7 +1094,7 @@ body.embed-clean .task-item {
 
     body:not(.embed-clean) .stats-small {
         gap: 8px;
-        margin-top: 10px;
+        margin-top: 4px;
     }
 
     body:not(.embed-clean) .stat-small {
@@ -1107,7 +1114,7 @@ body.embed-clean .task-item {
 
     body:not(.embed-clean) .selected-task-panel {
         max-width: 280px;
-        padding: 12px;
+        padding: 10px;
         border-radius: 12px;
         box-shadow: none;
     }
@@ -1124,6 +1131,39 @@ body.embed-clean .task-item {
 
     body:not(.embed-clean) .selected-task-actions {
         gap: 6px;
+    }
+
+    body:not(.embed-clean) {
+        min-height: 100dvh;
+        height: 100dvh;
+        align-items: stretch;
+        justify-content: stretch;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    body:not(.embed-clean) .widget {
+        width: 100vw;
+        max-width: none;
+        min-height: 100dvh;
+        height: 100dvh;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    body:not(.embed-clean) .home-task-list {
+        overflow-y: auto;
+        max-height: 170px;
+    }
+
+    body:not(.embed-clean) .sidebar {
+        max-height: none;
+        overflow: hidden;
+    }
+
+    body:not(.embed-clean) .tasks-list {
+        overflow-y: hidden;
+        padding-right: 0;
     }
 }
 

@@ -12,13 +12,48 @@ const tasksData = [
     { id: 8, text: 'Probar nuevas features', completed: false }
 ];
 
+const TASKS_STORAGE_KEY = 'timeRulette.tasks';
+
+function loadTasksFromStorage() {
+    try {
+        const raw = localStorage.getItem(TASKS_STORAGE_KEY);
+        if (!raw) {
+            return [...tasksData];
+        }
+
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) {
+            return [...tasksData];
+        }
+
+        return parsed
+            .filter(task => task && typeof task.text === 'string')
+            .map((task, index) => ({
+                id: Number.isInteger(task.id) ? task.id : index + 1,
+                text: task.text,
+                completed: Boolean(task.completed)
+            }));
+    } catch {
+        return [...tasksData];
+    }
+}
+
+function saveTasksToStorage() {
+    try {
+        localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(state.tasks));
+    } catch {
+    }
+}
+
+const initialTasks = loadTasksFromStorage();
+
 // ========================================
 // ESTADO DE LA APLICACIÓN
 // ========================================
 const state = {
-    tasks: [...tasksData],
+    tasks: [...initialTasks],
     selectedTask: null,
-    idCounter: Math.max(...tasksData.map(task => task.id), 0) + 1,
+    idCounter: Math.max(...initialTasks.map(task => task.id), 0) + 1,
     excludedTaskForNextDrawId: null
 };
 
@@ -120,6 +155,7 @@ function addTask() {
     });
 
     taskInput.value = '';
+    saveTasksToStorage();
     renderTasks();
     renderHomeTasks();
     updateStats();
@@ -132,6 +168,7 @@ function deleteTask(taskId) {
         state.selectedTask = null;
         hideSelectedTaskPanel();
     }
+    saveTasksToStorage();
     renderTasks();
     renderHomeTasks();
     updateStats();
@@ -145,6 +182,7 @@ function toggleTaskComplete(taskId) {
     const task = state.tasks.find(t => t.id === taskId);
     if (task) {
         task.completed = !task.completed;
+        saveTasksToStorage();
         renderTasks();
         renderHomeTasks();
         updateStats();
@@ -259,6 +297,8 @@ function resetToRoulette() {
     state.selectedTask = null;
     state.excludedTaskForNextDrawId = null;
 
+    saveTasksToStorage();
+
     renderTasks();
     renderHomeTasks();
     updateStats();
@@ -308,6 +348,7 @@ function finishSelectedTask() {
 
     state.selectedTask = null;
     state.excludedTaskForNextDrawId = null;
+    saveTasksToStorage();
     hideSelectedTaskPanel();
     renderTasks();
     renderHomeTasks();

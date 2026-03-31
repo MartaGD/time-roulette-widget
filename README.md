@@ -7,6 +7,7 @@ Widget en frontend puro (HTML/CSS/JS) para gestionar tareas y seleccionar una pe
 - Arquitectura separada en 3 archivos: `index.html`, `style.css`, `script.js`.
 - Diseño pastel/kawaii con versión embed compacta para iframes (Notion).
 - Flujo completo por pantallas: gestión → ruleta → final.
+- Persistencia local en `localStorage` para mantener tareas entre recargas.
 
 ## 🧩 Pantallas y funcionamiento
 
@@ -93,6 +94,12 @@ const tasksData = [
   { id: 2, text: 'Escribir reporte diario', completed: false }
 ];
 ```
+
+Notas:
+
+- `tasksData` se usa como lista inicial cuando no hay datos guardados.
+- Tras el primer uso, las tareas se guardan automáticamente en `localStorage`.
+- El botón `Reiniciar` en la pantalla final vacía la lista y actualiza `localStorage`.
 
 ## 🗂️ Estructura del proyecto
 
