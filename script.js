@@ -43,17 +43,10 @@ const selectedTaskName = document.getElementById('selectedTaskName');
 const finishTaskBtn = document.getElementById('finishTaskBtn');
 const backToRouletteBtn = document.getElementById('backToRouletteBtn');
 
-const urlParams = new URLSearchParams(window.location.search);
-const embedMode = urlParams.get('embed');
-const forceCleanEmbed = embedMode === 'clean' || embedMode === 'mini';
-const forceMiniEmbed = embedMode === 'mini' || urlParams.get('size') === 'mini';
 const isEmbedded = window.self !== window.top;
 
-if (isEmbedded || forceCleanEmbed) {
+if (isEmbedded) {
     document.body.classList.add('embed-clean');
-}
-
-if (forceMiniEmbed) {
     document.body.classList.add('embed-mini');
 }
 
@@ -152,6 +145,7 @@ function toggleTaskComplete(taskId) {
     if (task) {
         task.completed = !task.completed;
         renderTasks();
+        renderHomeTasks();
         updateStats();
         updateButtonState();
         
@@ -206,7 +200,15 @@ function renderHomeTasks() {
         li.className = `home-task-item ${task.completed ? 'completed' : ''}`;
 
         li.innerHTML = `
-            <span class="home-task-text">${escapeHtml(task.text)}</span>
+            <div class="home-task-main">
+                <input 
+                    type="checkbox" 
+                    class="home-task-checkbox" 
+                    ${task.completed ? 'checked' : ''}
+                    aria-label="Marcar tarea como completada"
+                >
+                <span class="home-task-text">${escapeHtml(task.text)}</span>
+            </div>
             <button class="delete-btn" data-delete-id="${task.id}" aria-label="Eliminar tarea">
                 <span class="delete-btn-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -217,7 +219,10 @@ function renderHomeTasks() {
             </button>
         `;
 
+        const checkbox = li.querySelector('.home-task-checkbox');
         const deleteButton = li.querySelector('.delete-btn');
+
+        checkbox.addEventListener('change', () => toggleTaskComplete(task.id));
         deleteButton.addEventListener('click', () => deleteTask(task.id));
 
         homeTaskList.appendChild(li);

@@ -16,7 +16,10 @@
 
             <div class="home-actions">
                 <input type="text" id="taskInput" class="task-input" placeholder="Escribe una nueva tarea...">
-                <button id="addTaskBtn" class="primary-btn">Añadir</button>
+                <button id="addTaskBtn" class="primary-btn" aria-label="Añadir tarea">
+                    <span class="add-btn-icon" aria-hidden="true">＋</span>
+                    <span class="add-btn-text">Añadir</span>
+                </button>
             </div>
 
             <ul class="home-task-list" id="homeTaskList"></ul>
