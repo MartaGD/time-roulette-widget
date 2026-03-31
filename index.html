@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta de Tareas - Notion Widget</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="widget">
+        <div class="flower-decoration flower-top-right" aria-hidden="true">🌸 ✿</div>
+        <div class="flower-decoration flower-bottom-left" aria-hidden="true">✿ 🌼</div>
+
+        <!-- Pantalla Principal: Gestión -->
+        <div class="home-screen" id="homeScreen">
+
+            <div class="home-actions">
+                <input type="text" id="taskInput" class="task-input" placeholder="Escribe una nueva tarea...">
+                <button id="addTaskBtn" class="primary-btn">Añadir</button>
+            </div>
+
+            <ul class="home-task-list" id="homeTaskList"></ul>
+
+            <button id="goToRouletteBtn" class="secondary-btn">Ir a la ruleta</button>
+        </div>
+
+        <!-- Pantalla Ruleta -->
+        <div class="roulette-screen" id="rouletteScreen">
+            
+            <button class="spin-button" id="spinBtn">
+                ELEGIR
+            </button>
+
+            <div class="selected-task-panel hidden" id="selectedTaskPanel">
+                <h3>Tarea seleccionada</h3>
+                <p id="selectedTaskName"></p>
+                <div class="selected-task-actions">
+                    <button id="finishTaskBtn" class="primary-btn">Terminar</button>
+                    <button id="backToRouletteBtn" class="secondary-btn">Volver</button>
+                </div>
+            </div>
+            
+            <div class="stats-small">
+                <div class="stat-small">
+                    <div class="stat-small-value" id="pendingCount">0</div>
+                    <div class="stat-small-label">Pendientes</div>
+                </div>
+                <div class="stat-small">
+                    <div class="stat-small-value" id="completedCount">0</div>
+                    <div class="stat-small-label">Completadas</div>
+                </div>
+            </div>
+
+            <button class="secondary-btn" id="goToHomeBtn">Volver al inicio</button>
+        </div>
+
+        <!-- Pantalla Final: Todas Completadas -->
+        <div class="completion-screen hidden" id="completionScreen">
+            <div class="completion-icon">🎉</div>
+            <h1>¡Lo hiciste!</h1>
+            <p>¡Felicidades! Has completado todas tus tareas. ¡Excelente trabajo!</p>
+            <button class="reset-btn" id="resetBtn">Reiniciar</button>
+        </div>
+
+        <!-- Barra Lateral: Lista de Tareas -->
+        <aside class="sidebar">
+            <h2>Tareas</h2>
+            <ul class="tasks-list" id="tasksList">
+                <!-- Se poblará con JavaScript -->
+            </ul>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
