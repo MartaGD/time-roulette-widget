@@ -44,11 +44,17 @@ const finishTaskBtn = document.getElementById('finishTaskBtn');
 const backToRouletteBtn = document.getElementById('backToRouletteBtn');
 
 const urlParams = new URLSearchParams(window.location.search);
-const forceCleanEmbed = urlParams.get('embed') === 'clean';
+const embedMode = urlParams.get('embed');
+const forceCleanEmbed = embedMode === 'clean' || embedMode === 'mini';
+const forceMiniEmbed = embedMode === 'mini' || urlParams.get('size') === 'mini';
 const isEmbedded = window.self !== window.top;
 
 if (isEmbedded || forceCleanEmbed) {
     document.body.classList.add('embed-clean');
+}
+
+if (forceMiniEmbed) {
+    document.body.classList.add('embed-mini');
 }
 
 // ========================================

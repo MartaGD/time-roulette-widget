@@ -1,220 +1,119 @@
-# 🎡 Ruleta de Tareas - Widget Notion
+# 🎡 Ruleta de Tareas - Notion Widget
 
-Una aplicación web interactiva para gestionar tareas mediante una ruleta aleatoria. Perfecta para cuando no sabes qué tarea hacer primero.
+Widget en frontend puro (HTML/CSS/JS) para gestionar tareas y seleccionar una pendiente al azar.
 
-## 📋 Descripción de la Aplicación
+## ✨ Estado actual del proyecto
 
-**Ruleta de Tareas** es un widget de frontend puro que te ayuda a elegir tareas de forma aleatoria. La aplicación utiliza una interfaz intuitiva con un gran botón circular en el centro y una lista de tareas en la barra lateral.
+- Arquitectura separada en 3 archivos: `index.html`, `style.css`, `script.js`.
+- Diseño pastel/kawaii con versión embed clean para iframes (Notion).
+- Flujo completo por pantallas: gestión → ruleta → final.
 
-### Funcionalidades Principales
+## 🧩 Pantallas y funcionamiento
 
-- **🎯 Selección Aleatoria**: Presiona el botón "ELEGIR" para que la aplicación seleccione una tarea aleatoria de las pendientes
-- **📝 Lista de Tareas**: Visualiza todas tus tareas en la barra lateral
-- **✅ Marcar Completadas**: Usa los checkboxes para marcar tareas como completadas
-- **🎨 Indicadores Visuales**: Las tareas completadas aparecen tachadas y con estilo diferente
-- **📊 Estadísticas en Tiempo Real**: Muestra el número de tareas pendientes y completadas
-- **🎉 Pantalla de Finalización**: Cuando completas todas las tareas, aparece una pantalla de celebración
-- **💾 100% Frontend**: Todo funciona en el navegador sin necesidad de servidor
+### 1) Pantalla principal (Gestión)
 
-## 🚀 Cómo Iniciar
+- Añadir tarea desde input + botón `Añadir` (también con Enter).
+- Eliminar tarea desde botón `Eliminar`.
+- En pantallas muy pequeñas, el botón `Eliminar` se convierte en icono de papelera.
+- Botón `Ir a la ruleta` para pasar a la selección aleatoria.
+- **La barra lateral está oculta en esta pantalla.**
 
-1. Abre el archivo `index.html` en tu navegador web
-2. La aplicación cargará automáticamente con una lista predefinida de tareas
+### 2) Pantalla de ruleta
 
-## 🎮 Cómo Usar
+- Botón circular `ELEGIR` selecciona una tarea pendiente aleatoria.
+- Ya no se usa popup/alert.
+- Se muestra panel de tarea seleccionada con:
+  - `Terminar`: marca la tarea como completada y vuelve a ruleta.
+  - `Volver`: no la completa y vuelve a ruleta.
+- Regla de exclusión: al pulsar `Volver`, esa tarea se excluye **solo en el siguiente sorteo**.
+- **La barra lateral sí se muestra en esta pantalla.**
 
-### Pantalla Principal
-- **Botón Circular (ELEGIR)**: Presiona para seleccionar aleatoriamente una tarea pendiente
-- Una vez seleccionada, aparecerá un alert con la tarea elegida
-- **Contador Pendientes/Completadas**: Aparece bajo el botón para seguimiento rápido
+### 3) Pantalla final (`¡Lo hiciste!`)
 
-### Barra Lateral - Gestión de Tareas
-- **Checkbox**: Marca una tarea como completada haciendo clic en el checkbox
-- **Lista Scrolleable**: Si hay muchas tareas, puedes desplazarte con la rueda del ratón
-- Las tareas completadas aparecen con una línea a través (tachadas)
+- Aparece cuando todas las tareas están completadas.
+- Botón `Reiniciar` para volver a la ruleta.
+- **La barra lateral está oculta en esta pantalla.**
 
-### Pantalla Final
-- Cuando todas las tareas estén completadas, aparece la pantalla de celebración
-- Presiona el botón "Reiniciar" para volver a la pantalla principal y continuar
+## 📌 Barra lateral
 
-## ⚙️ Configuración
+- Muestra lista de tareas con checkbox de completado.
+- Las tareas completadas aparecen tachadas.
+- Visibilidad actual:
+  - Oculta en gestión.
+  - Visible en ruleta.
+  - Oculta en pantalla final.
 
-### Editar la Lista de Tareas
+## 📱 Responsive y comportamiento móvil
 
-Para cambiar las tareas predefinidas, abre `index.html` en un editor de texto y busca esta sección:
+- Layout adaptable en desktop y móvil.
+- En móvil pequeño (`max-width: 480px`), los botones de eliminar pasan a icono.
+
+## 🌐 Modo embed (Notion)
+
+El proyecto incluye un modo automático para embeds:
+
+- Si se carga dentro de `iframe`, se activa `embed-clean`.
+- También puede forzarse con query param: `?embed=clean`.
+
+### ¿Qué cambia en `embed-clean`?
+
+- Fondo externo transparente.
+- Menos sombras y decoración.
+- Flores decorativas ocultas.
+- Proporciones reducidas del widget (ruleta, textos, paddings, sidebar y tarjetas).
+
+## ⚙️ Configuración rápida
+
+### Editar tareas iniciales
+
+En `script.js`:
 
 ```javascript
 const tasksData = [
-    { id: 1, text: 'Revisar emails', completed: false },
-    { id: 2, text: 'Escribir reporte diario', completed: false },
-    { id: 3, text: 'Llamada con equipo', completed: false },
-    // ... más tareas
+  { id: 1, text: 'Revisar emails', completed: false },
+  { id: 2, text: 'Escribir reporte diario', completed: false }
 ];
 ```
 
-Modifica el array con tus propias tareas:
-- `id`: Identificador único (número)
-- `text`: Descripción de la tarea
-- `completed`: Estado inicial (true/false)
-
-## 🛠️ Tecnologías Utilizadas
-
-- **HTML5**: Estructura semántica
-- **CSS3**: Estilos y animaciones modernas
-- **JavaScript Vanilla**: Lógica sin dependencias externas
-- **Responsive Design**: Compatible con dispositivos móviles
-
-## 📱 Responsive
-
-La aplicación se adapta automáticamente a diferentes tamaños de pantalla:
-- **Desktop**: Layout horizontal (ruleta + barra lateral)
-- **Tablet/Mobile**: Layout vertical (ruleta arriba, tareas abajo)
-
-## 🏗️ Estructura del Código
+## 🗂️ Estructura del proyecto
 
 ```
-index.html
-├── Estilos CSS
-├── HTML (estructura)
-└── JavaScript
-    ├── Estado de la aplicación (tasksData)
-    ├── Funciones principales
-    │   ├── getPendingTasks() - Obtiene tareas pendientes
-    │   ├── selectRandomTask() - Selecciona una aleatoria
-    │   ├── toggleTaskComplete() - Marca/desmarca tareas
-    │   ├── renderTasks() - Renderiza la lista
-    │   ├── updateStats() - Actualiza estadísticas
-    │   └── showCompletionScreen() - Muestra pantalla final
-    └── Event Listeners
+timeRulette/
+├── index.html   # Estructura de pantallas
+├── style.css    # Tema, responsive y modo embed
+├── script.js    # Estado, lógica de flujo y eventos
+└── README.md
 ```
 
-## 🎯 Flujo de la Aplicación
+## 🚀 Publicación en GitHub Pages
 
-```
-1. Inicio
-   ↓
-2. Mostrar lista de tareas pendientes
-   ↓
-3. Usuario presiona "ELEGIR"
-   ↓
-4. Seleccionar tarea aleatoria
-   ↓
-5. Mostrar alert con la tarea
-   ↓
-6. Usuario marca tareas como completadas
-   ↓
-7. ¿Todas completadas?
-   ├─ No → Volver al paso 3
-   └─ Sí → Mostrar pantalla de celebración
-```
+- Repo: `https://github.com/MartaGD/time-roulette-widget`
+- URL Pages: `https://martagd.github.io/time-roulette-widget/`
+
+Para Notion, usa `/embed` con la URL de Pages.
 
 ---
 
-## 🔮 Futuras Implementaciones
+## 🔮 Futuras implementaciones
 
-### 1. **Temporizador Integrado** ⏱️
+### Temporizador por tarea ⏱️
 
-#### Descripción
-Después de seleccionar una tarea, el usuario podrá iniciar un temporizador para controlar cuánto tiempo tarda en completarla. El temporizador incluirá:
+Después de seleccionar tarea:
 
-- **Botón "Empezar"**: Inicia la cuenta regresiva/contador
-- **Botón "Pausar"**: Pausa temporalmente el temporizador
-- **Botón "Terminar"**: Detiene el temporizador y registra el tiempo
+- Botón `Empezar`
+- Botón `Pausar`
+- Botón `Terminar`
+- Contador de tiempo invertido
+- Guardado del tiempo de ejecución (almacenamiento por decidir)
 
-#### Características Propuestas
-- Mostrar tiempo transcurrido en formato MM:SS
-- Registrar tiempo en la estructura de datos de cada tarea
-- Historial de tiempos por tarea (tiempo mínimo, máximo, promedio)
-- Visualizar el tiempo registrado junto a cada tarea
-- Notificación sonora opcional al terminar
+Posibles opciones de almacenamiento:
 
-#### Almacenamiento de Datos
-Se puede implementar de varias formas:
-
-**Opción 1: LocalStorage (Recomendado para inicio)**
-```javascript
-// Guardar en navegador (persiste entre sesiones)
-localStorage.setItem('tasksTimeData', JSON.stringify(timeRecords));
-```
-
-**Opción 2: IndexedDB (Para datos más complejos)**
-```javascript
-// Base de datos en navegador más potente
-const request = indexedDB.open('TasksDB', 1);
-```
-
-**Opción 3: Backend API**
-```javascript
-// Enviar a servidor (requiere backend)
-fetch('/api/task-times', {
-    method: 'POST',
-    body: JSON.stringify(timeData)
-});
-```
-
-**Opción 4: Exportar/Importar JSON**
-```javascript
-// Permitir descargar datos como archivo JSON
-const dataUrl = 'data:application/json,' + JSON.stringify(allData);
-// También permitir cargar desde archivo
-```
-
-#### Datos a Almacenar
-```javascript
-{
-    taskId: 1,
-    taskText: 'Revisar emails',
-    completionTime: 450, // segundos
-    timestamp: '2026-03-31T14:30:00Z',
-    status: 'completed'
-}
-```
-
----
-
-### 2. **Estadísticas Avanzadas** 📊
-
-- Dashboard con gráficos de tiempo por tarea
-- Productividad diaria/semanal/mensual
-- Tareas más rápidas/lentas
-- Historial completo de sesiones
-
-### 3. **Sincronización con Notion** 🔗
-
-- Integración con API de Notion
-- Sincronizar tareas desde Notion
-- Actualizar estados automáticamente
-
-### 4. **Sonidos y Notificaciones** 🔔
-
-- Sonido al seleccionar tarea
-- Notificación cuando se completa una tarea
-- Alarma al terminar el temporizador
-
-### 5. **Temas Personalizables** 🎨
-
-- Modo oscuro/claro
-- Selector de colores
-- Guardad preferencias del usuario
-
-### 6. **Categorías y Filtrado** 🏷️
-
-- Agrupar tareas por categoría
-- Filtrar por prioridad
-- Vistas personalizadas
-
-### 7. **Importar/Exportar** 💾
-
-- Exportar tareas a CSV/JSON
-- Importar desde archivos
-- Respaldar datos
+- `localStorage` (rápido para empezar)
+- `IndexedDB` (más robusto)
+- Backend/API (si se añade servidor)
 
 ---
 
 ## 📄 Licencia
 
-Libre para usar y modificar
-
-## 👤 Autor
-
-Creado para optimizar la productividad mediante selección aleatoria de tareas
+Libre para uso y modificación.
