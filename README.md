@@ -5,7 +5,7 @@ Widget en frontend puro (HTML/CSS/JS) para gestionar tareas y seleccionar una pe
 ## ✨ Estado actual del proyecto
 
 - Arquitectura separada en 3 archivos: `index.html`, `style.css`, `script.js`.
-- Diseño pastel/kawaii con versión embed compacta para iframes (Notion).
+- Diseño pastel/kawaii con versión embed compacta para iframes (como Notion).
 - Flujo completo por pantallas: gestión → ruleta → final.
 - Persistencia local en `localStorage` para mantener tareas entre recargas.
 
@@ -60,18 +60,13 @@ Widget en frontend puro (HTML/CSS/JS) para gestionar tareas y seleccionar una pe
 ## 📱 Responsive y comportamiento móvil
 
 - Layout adaptable en desktop y móvil.
-- En pantalla pequeña (`max-width: 768px`) el modo no embebido usa comportamiento compacto, equivalente al mini embed.
+- En pantalla pequeña (`max-width: 768px`) el modo no embebido usa comportamiento compacto, equivalente al modo embed.
 
 ## 🌐 Modo embed (Notion)
 
-El proyecto incluye un modo automático para embeds:
+El proyecto incluye un modo automático para embeds, si se carga dentro de `iframe`, se activa automáticamente.
 
-- Si se carga dentro de `iframe`, se activa automáticamente:
-  - `embed-clean`
-  - `embed-mini`
-- No requiere parámetros URL.
-
-### ¿Qué cambia en el modo embed (clean + mini)?
+### ¿Qué cambia en el modo embed?
 
 - Fondo externo transparente.
 - Composición `full-bleed` (el widget ocupa todo el iframe).
@@ -103,21 +98,6 @@ Notas:
 - Tras el primer uso, las tareas se guardan automáticamente en `localStorage`.
 - La preferencia de tema del toggle embed (claro/oscuro) también se guarda en `localStorage`.
 - El botón `Reiniciar` en la pantalla final vacía la lista y actualiza `localStorage`.
-
-## 🧭 Detalles de scroll por modo
-
-- **Embed compacto**: sin scroll externo; la lista de tareas de gestión sí puede tener scroll interno.
-- **Responsive no embed (pantalla principal)**: sin scroll en la zona de tareas.
-
-## 🗂️ Estructura del proyecto
-
-```
-timeRulette/
-├── index.html   # Estructura de pantallas
-├── style.css    # Tema, responsive y modo embed
-├── script.js    # Estado, lógica de flujo y eventos
-└── README.md
-```
 
 ## 🔮 Futuras implementaciones
 
