@@ -377,6 +377,14 @@ body {
     z-index: 1;
 }
 
+.completion-screen:not(.hidden) ~ .sidebar {
+    display: none;
+}
+
+.home-screen:not(.hidden) ~ .sidebar {
+    display: none;
+}
+
 .sidebar h2 {
     font-size: 14px;
     font-weight: 600;
