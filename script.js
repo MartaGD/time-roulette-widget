@@ -46,6 +46,7 @@ const backToRouletteBtn = document.getElementById('backToRouletteBtn');
 const isEmbedded = window.self !== window.top;
 
 if (isEmbedded) {
+    document.documentElement.classList.add('embed-clean', 'embed-mini');
     document.body.classList.add('embed-clean');
     document.body.classList.add('embed-mini');
 }
@@ -201,12 +202,7 @@ function renderHomeTasks() {
 
         li.innerHTML = `
             <div class="home-task-main">
-                <input 
-                    type="checkbox" 
-                    class="home-task-checkbox" 
-                    ${task.completed ? 'checked' : ''}
-                    aria-label="Marcar tarea como completada"
-                >
+                <span class="home-task-marker" aria-hidden="true">❤</span>
                 <span class="home-task-text">${escapeHtml(task.text)}</span>
             </div>
             <button class="delete-btn" data-delete-id="${task.id}" aria-label="Eliminar tarea">
@@ -219,10 +215,8 @@ function renderHomeTasks() {
             </button>
         `;
 
-        const checkbox = li.querySelector('.home-task-checkbox');
         const deleteButton = li.querySelector('.delete-btn');
 
-        checkbox.addEventListener('change', () => toggleTaskComplete(task.id));
         deleteButton.addEventListener('click', () => deleteTask(task.id));
 
         homeTaskList.appendChild(li);
@@ -261,8 +255,17 @@ function showCompletionScreen() {
  * Vuelve a la pantalla de ruleta
  */
 function resetToRoulette() {
-    homeScreen.classList.add('hidden');
-    rouletteScreen.classList.remove('hidden');
+    state.tasks = [];
+    state.selectedTask = null;
+    state.excludedTaskForNextDrawId = null;
+
+    renderTasks();
+    renderHomeTasks();
+    updateStats();
+    updateButtonState();
+
+    homeScreen.classList.remove('hidden');
+    rouletteScreen.classList.add('hidden');
     completionScreen.classList.add('hidden');
     hideSelectedTaskPanel();
 }
