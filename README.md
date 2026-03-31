@@ -14,21 +14,27 @@ Widget en frontend puro (HTML/CSS/JS) para gestionar tareas y seleccionar una pe
 
 - Añadir tarea desde input + botón `Añadir` (también con Enter).
 - Eliminar tarea desde botón `Eliminar`.
-- Lista con checkbox para marcar/desmarcar completadas directamente desde esta pantalla.
+- Lista de tareas con icono de corazón como marcador visual de cada tarea.
 - Botón `Ir a la ruleta` para pasar a la selección aleatoria.
 - **La barra lateral está oculta en esta pantalla.**
+
+#### Vista normal (no compacta)
+
+- Cada tarea se muestra como tarjeta independiente.
+- La lista se ve separada por elementos individuales.
 
 #### Comportamiento compacto (pantalla pequeña y embed)
 
 - `Input + Añadir` en una sola línea.
 - Botón `Añadir` en formato icono.
 - Lista de tareas en una sola caja (filas), no tarjetas independientes.
-- Cada fila muestra: checkbox + texto + botón eliminar con icono.
+- Menor interlineado y densidad más compacta en cada fila.
+- Cada fila muestra: corazón + texto + botón eliminar con icono.
+- En embed compacto, la caja de tareas tiene scroll interno para listas largas.
 
 ### 2) Pantalla de ruleta
 
 - Botón circular `ELEGIR` selecciona una tarea pendiente aleatoria.
-- Ya no se usa popup/alert.
 - Se muestra panel de tarea seleccionada con:
   - `Terminar`: marca la tarea como completada y vuelve a ruleta.
   - `Volver`: no la completa y vuelve a ruleta.
@@ -38,7 +44,7 @@ Widget en frontend puro (HTML/CSS/JS) para gestionar tareas y seleccionar una pe
 ### 3) Pantalla final (`¡Lo hiciste!`)
 
 - Aparece cuando todas las tareas están completadas.
-- Botón `Reiniciar` para volver a la ruleta.
+- Botón `Reiniciar` para volver a gestión y dejar la lista vacía.
 - **La barra lateral está oculta en esta pantalla.**
 
 ## 📌 Barra lateral
@@ -62,15 +68,18 @@ El proyecto incluye un modo automático para embeds:
 - Si se carga dentro de `iframe`, se activa automáticamente:
   - `embed-clean`
   - `embed-mini`
+- No requiere parámetros URL.
 
 ### ¿Qué cambia en el modo embed (clean + mini)?
 
 - Fondo externo transparente.
+- Composición `full-bleed` (el widget ocupa todo el iframe).
 - Menos sombras y decoración.
 - Flores decorativas ocultas.
 - Proporciones más reducidas (fuentes, ruleta, botones, paddings y paneles).
 - Barra lateral oculta para ahorrar espacio.
 - Pantalla de gestión en formato lista compacta con controles en una línea.
+- Sin scroll externo del iframe (solo scroll interno en la lista de tareas compacta).
 
 ## ⚙️ Configuración rápida
 
@@ -94,15 +103,6 @@ timeRulette/
 ├── script.js    # Estado, lógica de flujo y eventos
 └── README.md
 ```
-
-## 🚀 Publicación en GitHub Pages
-
-- Repo: `https://github.com/MartaGD/time-roulette-widget`
-- URL Pages: `https://martagd.github.io/time-roulette-widget/`
-
-Para Notion, usa `/embed` con la URL de Pages.
-
----
 
 ## 🔮 Futuras implementaciones
 

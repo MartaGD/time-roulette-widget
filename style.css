@@ -1202,7 +1202,9 @@ body.embed-mini .home-task-list {
     border: 1px solid var(--rose-soft-border) !important;
     border-radius: 10px !important;
     padding-right: 0 !important;
-    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    max-height: 150px !important;
 }
 
 body.embed-mini .home-task-item {
