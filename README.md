@@ -5,7 +5,7 @@ Widget en frontend puro (HTML/CSS/JS) para gestionar tareas y seleccionar una pe
 ## ✨ Estado actual del proyecto
 
 - Arquitectura separada en 3 archivos: `index.html`, `style.css`, `script.js`.
-- Diseño pastel/kawaii con versión embed clean para iframes (Notion).
+- Diseño pastel/kawaii con versión embed compacta para iframes (Notion).
 - Flujo completo por pantallas: gestión → ruleta → final.
 
 ## 🧩 Pantallas y funcionamiento
@@ -14,9 +14,16 @@ Widget en frontend puro (HTML/CSS/JS) para gestionar tareas y seleccionar una pe
 
 - Añadir tarea desde input + botón `Añadir` (también con Enter).
 - Eliminar tarea desde botón `Eliminar`.
-- En pantallas muy pequeñas, el botón `Eliminar` se convierte en icono de papelera.
+- Lista con checkbox para marcar/desmarcar completadas directamente desde esta pantalla.
 - Botón `Ir a la ruleta` para pasar a la selección aleatoria.
 - **La barra lateral está oculta en esta pantalla.**
+
+#### Comportamiento compacto (pantalla pequeña y embed)
+
+- `Input + Añadir` en una sola línea.
+- Botón `Añadir` en formato icono.
+- Lista de tareas en una sola caja (filas), no tarjetas independientes.
+- Cada fila muestra: checkbox + texto + botón eliminar con icono.
 
 ### 2) Pantalla de ruleta
 
@@ -46,21 +53,24 @@ Widget en frontend puro (HTML/CSS/JS) para gestionar tareas y seleccionar una pe
 ## 📱 Responsive y comportamiento móvil
 
 - Layout adaptable en desktop y móvil.
-- En móvil pequeño (`max-width: 480px`), los botones de eliminar pasan a icono.
+- En pantalla pequeña (`max-width: 768px`) el modo no embebido usa comportamiento compacto, equivalente al mini embed.
 
 ## 🌐 Modo embed (Notion)
 
 El proyecto incluye un modo automático para embeds:
 
-- Si se carga dentro de `iframe`, se activa `embed-clean`.
-- También puede forzarse con query param: `?embed=clean`.
+- Si se carga dentro de `iframe`, se activa automáticamente:
+  - `embed-clean`
+  - `embed-mini`
 
-### ¿Qué cambia en `embed-clean`?
+### ¿Qué cambia en el modo embed (clean + mini)?
 
 - Fondo externo transparente.
 - Menos sombras y decoración.
 - Flores decorativas ocultas.
-- Proporciones reducidas del widget (ruleta, textos, paddings, sidebar y tarjetas).
+- Proporciones más reducidas (fuentes, ruleta, botones, paddings y paneles).
+- Barra lateral oculta para ahorrar espacio.
+- Pantalla de gestión en formato lista compacta con controles en una línea.
 
 ## ⚙️ Configuración rápida
 

@@ -957,3 +957,172 @@ body.embed-clean .task-item {
         height: 18px;
     }
 }
+
+@media (max-width: 768px) {
+    body:not(.embed-clean) .widget {
+        max-width: 430px;
+        min-height: 320px;
+        border-radius: 14px;
+    }
+
+    body:not(.embed-clean) .home-screen,
+    body:not(.embed-clean) .roulette-screen,
+    body:not(.embed-clean) .completion-screen {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    body:not(.embed-clean) .home-screen h1,
+    body:not(.embed-clean) .roulette-screen h1,
+    body:not(.embed-clean) .completion-screen h1 {
+        font-size: 19px;
+    }
+
+    body:not(.embed-clean) .home-screen p,
+    body:not(.embed-clean) .roulette-screen p,
+    body:not(.embed-clean) .completion-screen p {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    body:not(.embed-clean) .home-actions {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 8px;
+        flex-direction: row !important;
+    }
+
+    body:not(.embed-clean) .task-input,
+    body:not(.embed-clean) .primary-btn,
+    body:not(.embed-clean) .secondary-btn,
+    body:not(.embed-clean) .reset-btn {
+        font-size: 11px;
+        padding: 8px 10px;
+    }
+
+    body:not(.embed-clean) .task-input {
+        min-width: 0;
+        flex: 1;
+    }
+
+    body:not(.embed-clean) #addTaskBtn {
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    body:not(.embed-clean) #addTaskBtn .add-btn-icon {
+        display: inline-flex;
+    }
+
+    body:not(.embed-clean) #addTaskBtn .add-btn-text {
+        display: none;
+    }
+
+    body:not(.embed-clean) .home-task-list {
+        gap: 0;
+        background: var(--rose-soft);
+        border: 1px solid var(--rose-soft-border);
+        border-radius: 12px;
+        box-shadow: none;
+        overflow: hidden;
+    }
+
+    body:not(.embed-clean) .home-task-item {
+        padding: 8px 10px;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid var(--rose-soft-border);
+        box-shadow: none;
+        background: transparent;
+    }
+
+    body:not(.embed-clean) .home-task-item:last-child {
+        border-bottom: none;
+    }
+
+    body:not(.embed-clean) .home-task-text {
+        font-size: 11px;
+    }
+
+    body:not(.embed-clean) .delete-btn {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    body:not(.embed-clean) .delete-btn-text {
+        display: none;
+    }
+
+    body:not(.embed-clean) .delete-btn-icon {
+        width: 15px;
+        height: 15px;
+    }
+
+    body:not(.embed-clean) .spin-button {
+        width: 108px;
+        height: 108px;
+        font-size: 16px;
+        border-width: 3px;
+        letter-spacing: 0.6px;
+    }
+
+    body:not(.embed-clean) .spin-button::before {
+        top: -9px;
+        border-left-width: 6px;
+        border-right-width: 6px;
+        border-top-width: 9px;
+    }
+
+    body:not(.embed-clean) .spin-button::after {
+        bottom: 15px;
+        font-size: 11px;
+    }
+
+    body:not(.embed-clean) .stats-small {
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    body:not(.embed-clean) .stat-small {
+        min-width: 72px;
+        padding: 7px 8px;
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+    body:not(.embed-clean) .stat-small-value {
+        font-size: 18px;
+    }
+
+    body:not(.embed-clean) .stat-small-label {
+        font-size: 10px;
+    }
+
+    body:not(.embed-clean) .selected-task-panel {
+        max-width: 280px;
+        padding: 12px;
+        border-radius: 12px;
+        box-shadow: none;
+    }
+
+    body:not(.embed-clean) .selected-task-panel h3 {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    body:not(.embed-clean) .selected-task-panel p {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    body:not(.embed-clean) .selected-task-actions {
+        gap: 6px;
+    }
+}
