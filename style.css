@@ -44,12 +44,10 @@ body {
 
 .embed-theme-toggle {
     display: none;
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    z-index: 20;
+    position: static;
     width: 26px;
     height: 26px;
+    min-width: 26px;
     border-radius: 50%;
     border: 1px solid var(--rose-soft-border);
     background: rgba(255, 255, 255, 0.9);
@@ -57,9 +55,9 @@ body {
     cursor: pointer;
     font-size: 12px;
     line-height: 1;
-    display: none;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 body.embed-clean .embed-theme-toggle {
@@ -760,6 +758,10 @@ body.embed-clean .stat-small {
     margin-top: 4px;
 }
 
+body.embed-dark .stat-small-label {
+    color: #f4c9d8;
+}
+
 /* LISTA LATERAL */
 .sidebar {
     width: 280px;
@@ -1290,6 +1292,25 @@ body.embed-mini .home-task-list {
     overflow-x: hidden !important;
     overflow-y: auto !important;
     max-height: 150px !important;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rose-500) transparent;
+}
+
+body.embed-mini .home-task-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+body.embed-mini .home-task-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body.embed-mini .home-task-list::-webkit-scrollbar-thumb {
+    background: var(--rose-500);
+    border-radius: 999px;
+}
+
+body.embed-mini .home-task-list::-webkit-scrollbar-thumb:hover {
+    background: var(--rose-600);
 }
 
 body.embed-mini .home-task-item {
