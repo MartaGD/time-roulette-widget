@@ -1,16 +1,7 @@
 // ========================================
 // LISTA DE TAREAS EN MEMORIA (EDITABLE)
 // ========================================
-const tasksData = [
-    { id: 1, text: 'Revisar emails', completed: false },
-    { id: 2, text: 'Escribir reporte diario', completed: false },
-    { id: 3, text: 'Llamada con equipo', completed: false },
-    { id: 4, text: 'Actualizar documentación', completed: false },
-    { id: 5, text: 'Revisar código de PR', completed: false },
-    { id: 6, text: 'Planificación semanal', completed: false },
-    { id: 7, text: 'Reunion con cliente', completed: false },
-    { id: 8, text: 'Probar nuevas features', completed: false }
-];
+const tasksData = [];
 
 const TASKS_STORAGE_KEY = 'timeRulette.tasks';
 
